@@ -30,13 +30,19 @@
 $currentFile = basename(__FILE__);
 include_once __DIR__ . '/header.php';
 
-echo '<br/>start cron job<br/>';
+// Disable xoops debugger in dialog window
+include_once $GLOBALS['xoops']->path('/class/logger/xoopslogger.php');
+$xoopsLogger =& XoopsLogger::getInstance();
+$xoopsLogger->activated = false;
+error_reporting(0);
 
-include_once XOOPS_ROOT_PATH . '/modules/xnewsletter/include/functions.task.php';
+include_once XNEWSLETTER_ROOT_PATH . '/include/functions.task.php';
 // execute all pending tasks
-$result_exec = xnewsletter_executeTasks($xnewsletter->getConfig('xn_send_in_packages'), 0);
+$executeTasksResult = xnewsletter_executeTasks($xnewsletter->getConfig('xn_send_in_packages'), 0);
 
-if ($result_exec != '') {
-    $protocolObj = $xnewsletter->getHandler('protocol')->protocol(0, 0, 'Cron: ' . $result_exec, _XNEWSLETTER_PROTOCOL_STATUS_CRON, array('%result_exec' => $result_exec), true);
+if ($executeTasksResult != '') {
+    $protocolObj = $xnewsletter->getHandler('protocol')->protocol(0, 0, 'Cron: ' . $executeTasksResult, _XNEWSLETTER_PROTOCOL_STATUS_CRON, array('%result_exec' => $executeTasksResult), true);
+    echo "[" . date(_DATESTRING) . "] result cron: {$executeTasksResult}";
+} else {
+    // NOP
 }
-echo "<br/>result cron: {$result_exec}";
