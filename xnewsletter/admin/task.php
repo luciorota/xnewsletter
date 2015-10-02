@@ -307,7 +307,7 @@ switch ($op) {
             xoops_confirm(
                 array('ok' => true, 'op' => 'delete_tasks', 'field' => $field, 'value' => $value),
                 $_SERVER['REQUEST_URI'],
-                sprintf(_AM_XNEWSLETTER_FORMSUREDEL_LIST, $title)
+                sprintf(_AM_XNEWSLETTER_FORMSUREDEL, $title)
             );
             include_once __DIR__ . '/admin_footer.php';
         }

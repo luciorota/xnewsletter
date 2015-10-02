@@ -515,7 +515,7 @@ define('_AM_XNEWSLETTER_TASK_CONFIGS', "Config &quot;Send in pakages&quot;");
 define('_AM_XNEWSLETTER_TASK_DELETE_ALL', "Delete all tasks");
 define('_AM_XNEWSLETTER_TASK_RUN_CRON_NOW', "Execute now &quot;cron.php&quot;");
 define('_AM_XNEWSLETTER_FORMSURERUNCRONNOW', "Are you sure you want to execute: <span class='bold red'>&quot;cron.php&quot;</span>");
-
+define('_AM_XNEWSLETTER_FORMSURESEND', "Are you sure you want to send: <span class='bold red'>%s</span>");
 
 //Buttons
 define('_AM_XNEWSLETTER_NEWTEMPLATE', "Add New Template");

@@ -1,6 +1,5 @@
 Version 1.3     NOT RELEASED
 -------------------------------
- - avoid cron.php output if there are not tasks (luciorota)
  - replaced "dirname(__FILE__)" with "__DIR__" (mamba)
  - centered icons in tables (mamba)
  - some English updates (mamba)

@@ -37,6 +37,8 @@
         <th><{$smarty.const._AM_XNEWSLETTER_LETTER_EMAIL_TEST}></th>
         <th><{$smarty.const._AM_XNEWSLETTER_PROTOCOL_LAST_STATUS}></th>
         <th><{$smarty.const._AM_XNEWSLETTER_FORMACTION}></th>
+        <th><{$smarty.const._AM_XNEWSLETTER_FORMACTION}></th>
+        <th><{$smarty.const._AM_XNEWSLETTER_FORMACTION}></th>
     </tr>
 <{foreach from=$letters item='letter'}>
     <tr class="<{cycle values='odd, even'}>">
@@ -116,7 +118,8 @@
                     alt='<{$smarty.const._DELETE}>'
                     title='<{$smarty.const._DELETE}>'
                     style='padding:1px' /></a>
-            <br />
+        </td>
+        <td class='center'>
             <a href='sendletter.php?op=send_test&letter_id=<{$letter.letter_id}>'>
                 <img
                     src='<{$smarty.const.XNEWSLETTER_ICONS_URL}>/xn_sendtest.png'
@@ -135,7 +138,8 @@
                     alt='<{$smarty.const._AM_XNEWSLETTER_LETTER_ACTION_RESEND}>'
                     title='<{$smarty.const._AM_XNEWSLETTER_LETTER_ACTION_RESEND}>'
                     style='padding:1px' /></a>
-            <br />
+        </td>
+        <td class='center'>
             <a href='?op=show_preview&letter_id=<{$letter.letter_id}>'>
                 <img
                     src='<{$smarty.const.XNEWSLETTER_ICONS_URL}>/xn_preview.png'

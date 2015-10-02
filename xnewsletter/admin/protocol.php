@@ -60,7 +60,7 @@ switch ($op) {
             //
             $filter_protocol_success = XoopsRequest::getInt('filter_protocol_success', 2); // all
             //
-            if (isset($_REQUEST['filter_protocol_created_from']['date'])) {
+            if (!empty($_REQUEST['filter_protocol_created_from']['date'])) {
                 $dateTimeObj = DateTime::createFromFormat(_SHORTDATESTRING, $_REQUEST['filter_protocol_created_from']['date']);
                 $dateTimeObj->setTime(0, 0, 0);
                 $filter_protocol_created_from = (int) ($dateTimeObj->getTimestamp() + $_REQUEST['filter_protocol_created_from']['time']);
@@ -68,9 +68,9 @@ switch ($op) {
             } else {
                 $filter_protocol_created_from = 3600;
             }
-            if (isset($_REQUEST['filter_protocol_created_to']['date'])) {
+            if (!empty($_REQUEST['filter_protocol_created_to']['date'])) {
                 $dateTimeObj = DateTime::createFromFormat(_SHORTDATESTRING, $_REQUEST['filter_protocol_created_to']['date']);
-                $dateTimeObj->setTime(0, 0, 0);
+                //$dateTimeObj->setTime(0, 0, 0);
                 $filter_protocol_created_to = (int) ($dateTimeObj->getTimestamp() + $_REQUEST['filter_protocol_created_to']['time']);
                 unset($dateTimeObj);
             } else {

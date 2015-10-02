@@ -27,22 +27,41 @@
  * ****************************************************************************
  */
 
+$currentFile = basename(__FILE__);
 include_once __DIR__ . '/admin_header.php';
 
-$op                  = XoopsRequest::getString('op', 'list');
-$letter_id           = XoopsRequest::getInt('letter_id', 0);
-$xn_send_in_packages = $xnewsletter->getConfig('xn_send_in_packages');
-if ($xn_send_in_packages > 0 && $op != 'send_test') {
-    $xn_send_in_packages_time = $xnewsletter->getConfig('xn_send_in_packages_time');
+// We recovered the value of the argument op in the URL$
+$op        = XoopsRequest::getString('op', 'list');
+$letter_id = XoopsRequest::getInt('letter_id', 0);
+
+$letterObj = $xnewsletter->getHandler('letter')->get($letter_id);
+
+if (XoopsRequest::getBool('ok', false, 'POST') == true) {
+    if (!$GLOBALS['xoopsSecurity']->check()) {
+        redirect_header($currentFile, 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+    }
+    $xn_send_in_packages = $xnewsletter->getConfig('xn_send_in_packages');
+    if ($xn_send_in_packages > 0 && $op != 'send_test') {
+        $xn_send_in_packages_time = $xnewsletter->getConfig('xn_send_in_packages_time');
+    } else {
+        $xn_send_in_packages_time = 0;
+    }
+    include XOOPS_ROOT_PATH . '/modules/xnewsletter/include/functions.task.php';
+    // create tasks
+    $result_create = xnewsletter_createTasks($op, $letter_id, $xn_send_in_packages, $xn_send_in_packages_time);
+    // execute tasks
+    $result_exec = xnewsletter_executeTasks($xn_send_in_packages, $letter_id);
+    redirect_header('letter.php', 3, $result_exec);
+
+    include_once __DIR__ . '/admin_footer.php';
 } else {
-    $xn_send_in_packages_time = 0;
+    // render start here
+    xoops_cp_header();
+    // render confirm form
+    xoops_confirm(
+        array('ok' => true, 'letter_id' => $letter_id, 'op' => $op),
+        $_SERVER['REQUEST_URI'],
+        sprintf(_AM_XNEWSLETTER_FORMSURESEND, $letterObj->getVar('letter_title'))
+    );
+    include_once __DIR__ . '/admin_footer.php';
 }
-
-include XOOPS_ROOT_PATH . '/modules/xnewsletter/include/functions.task.php';
-// create tasks
-$result_create = xnewsletter_createTasks($op, $letter_id, $xn_send_in_packages, $xn_send_in_packages_time);
-// execute tasks
-$result_exec = xnewsletter_executeTasks($xn_send_in_packages, $letter_id);
-redirect_header('letter.php', 3, $result_exec);
-
-include_once __DIR__ . '/admin_footer.php';
