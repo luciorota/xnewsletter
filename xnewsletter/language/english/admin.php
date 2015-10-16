@@ -510,6 +510,7 @@ define('_AM_XNEWSLETTER_TASK_CREATED_FILTER_TO', "Task created to date");
 define('_AM_XNEWSLETTER_TASK_STARTTIME_FILTER_FROM', "Task starttime form date");
 define('_AM_XNEWSLETTER_TASK_STARTTIME_FILTER_TO', "Task starttime to date");
 define('_AM_XNEWSLETTER_TASK_ACTIONS_EXECUTE', "Execute now");
+define('_AM_XNEWSLETTER_FORMEXECUTEOK', "Executed successfully");
 define('_AM_XNEWSLETTER_TASK_SHOW_ALL', "Show all");
 define('_AM_XNEWSLETTER_TASK_CONFIGS', "Config &quot;Send in pakages&quot;");
 define('_AM_XNEWSLETTER_TASK_DELETE_ALL', "Delete all tasks");

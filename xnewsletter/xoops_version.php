@@ -49,7 +49,7 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $modversion['dirname'] . '/include/
 
 // About
 $modversion['module_status']        = 'RC 2';
-$modversion['release_date']         = '2015/06/16';
+$modversion['release_date']         = '2015/10/15';
 $modversion['module_website_url']   = 'wedega.com';
 $modversion['module_website_name']  = 'Webdesign Gabor';
 $modversion['min_php']              = '5.3.7';
